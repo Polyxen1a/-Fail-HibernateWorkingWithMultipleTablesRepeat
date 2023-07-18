@@ -4,24 +4,15 @@ import model.City;
 
 import java.util.List;
 
-public class CityDao {
-    void createCity(City city) {
+public abstract class CityDao {
+    abstract void createCity(City city);
 
-    }
+    abstract City getByIdCity(int id);
 
-    City getByIdCity(int id) {
-        return null;
-    }
+    abstract List<City> getAllCities();
 
-    List<City> getAllCities() {
-        return null;
-    }
 
-    void updateCity(City city) {
+    abstract void updateCity(City city);
 
-    }
-
-    void deleteCity(City city) {
-
-    }
+    abstract void deleteCity(City city);
 }

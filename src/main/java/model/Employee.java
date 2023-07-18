@@ -2,13 +2,13 @@ package model;
 
 import jakarta.persistence.*;
 
-import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "employee")
 
-public class Employee {
+public abstract class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,15 +24,16 @@ public class Employee {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id")
-    private City city;
+    private City cityId;
 
-    public Employee(String firstName, String lastName, String gender, int age) {
+    public String Employee(String firstName, String lastName, String gender, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
         public Employee() {
         }
+
         public int getId () {
             return id;
         }
@@ -67,10 +68,10 @@ public class Employee {
             this.cityId = cityId;
         }
 
-        public City getCityId () {
+        public boolean getCityId () {
             return cityId;
         }
-        @Override
+    }
         public boolean equals (Object o){
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
@@ -78,12 +79,9 @@ public class Employee {
             return Objects.equals(id, employee.id) && Objects.equals(firstName, employee.firstName)
                     && Objects.equals(lastName, employee.lastName) && Objects.equals(gender, employee.gender)
                     && Objects.equals(age, employee.age) && Objects.equals(cityId, employee.cityId);
+
+
         }
-    }
-
-    public Employee() {
-
-    }
 
     @Override
     public String toString() {
@@ -95,4 +93,18 @@ public class Employee {
                 ", age=" + age +
                 '}';
     }
+
+
+    public abstract Employee getById(int id);
+
+    public abstract List<Employee> getAllEmployees();
+
+    public abstract void updateEmployee(Employee employee);
+
+    public abstract void deleteEmployee(Employee employee);
+
+    public void setCityId(City cityForEmployee) {
+    }
 }
+
+    public abstract void create(Employee employee);

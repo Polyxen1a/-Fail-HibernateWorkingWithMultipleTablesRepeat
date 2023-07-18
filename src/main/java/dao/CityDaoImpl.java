@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
-public class CityDaoImpl implements CityDao {
+public class CityDaoImpl extends CityDao {
     @Override
     public void createCity(City city) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {

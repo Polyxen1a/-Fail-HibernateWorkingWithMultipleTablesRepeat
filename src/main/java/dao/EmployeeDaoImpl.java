@@ -6,7 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;
 
-public class EmployeeDaoImpl {
+public class EmployeeDaoImpl extends Employee {
+    public EmployeeDaoImpl(String darya, String androva, String woman, int i) {
+        super(darya, androva, woman, i, o);
+    }
+
     @Override
     public void create(Employee employee) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
